@@ -1,0 +1,115 @@
+('100.64.7.116', '255.255.240.0', '100.64.0.1', '8.8.8.8') 
+
+import sht31
+from machine import Pin, I2C
+
+p5 = machine.Pin(5, Pin.OUT, Pin.PULL_UP)
+p4 = machine.Pin(4, Pin.OUT, Pin.PULL_UP)
+
+i2c = I2C(scl=p5, sda=p4, freq =40000)
+
+temp1 = sht31.SHT31(i2c, addr=0x44)
+temp2 = sht31.SHT31(i2c, addr=0x45)
+
+print(temp1.get_temp_humi())
+print(temp2.get_temp_humi())
+
+------
+
+from machine import Pin
+
+p13 = machine.Pin(13, Pin.OUT)
+p14 = machine.Pin(14, Pin.OUT)
+
+------
+
+network.WLAN(network.STA_IF).ifconfig()
+
+------
+
+from machine import Pin
+
+# MIST PUMP PIN
+p14 = Pin(14, Pin.OUT)
+p14.on()
+
+p13 = Pin(13, Pin.OUT)
+p13.on()
+------
+
+Arduino: 1.8.19 (Mac OS X), Board: "Arduino Nano, ATmega328P (Old Bootloader)"
+
+/Users/rogerho/Library/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/bin/avrdude -C/Users/rogerho/Library/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf -v -patmega328p -carduino -P/dev/cu.usbserial-110 -b19200 -e -Ulock:w:0x3F:m -Uefuse:w:0xFD:m -Uhfuse:w:0xDA:m -Ulfuse:w:0xFF:m 
+
+avrdude: Version 6.3-20190619
+         Copyright (c) 2000-2005 Brian Dean, http://www.bdmicro.com/
+         Copyright (c) 2007-2014 Joerg Wunsch
+
+         System wide configuration file is "/Users/rogerho/Library/Arduino15/packages/arduino/tools/avrdude/6.3.0-arduino17/etc/avrdude.conf"
+         User configuration file is "/Users/rogerho/.avrduderc"
+         User configuration file does not exist or is not a regular file, skipping
+
+         Using Port                    : /dev/cu.usbserial-110
+         Using Programmer              : arduino
+         Overriding Baud Rate          : 19200
+avrdude: stk500_getsync() attempt 1 of 10: not in sync: resp=0x15
+         AVR Part                      : ATmega328P
+         Chip Erase delay              : 9000 us
+         PAGEL                         : PD7
+         BS2                           : PC2
+         RESET disposition             : dedicated
+         RETRY pulse                   : SCK
+         serial program mode           : yes
+         parallel program mode         : yes
+         Timeout                       : 200
+         StabDelay                     : 100
+         CmdexeDelay                   : 25
+         SyncLoops                     : 32
+         ByteDelay                     : 0
+         PollIndex                     : 3
+         PollValue                     : 0x53
+         Memory Detail                 :
+
+                                  Block Poll               Page                       Polled
+           Memory Type Mode Delay Size  Indx Paged  Size   Size #Pages MinW  MaxW   ReadBack
+           ----------- ---- ----- ----- ---- ------ ------ ---- ------ ----- ----- ---------
+           eeprom        65    20     4    0 no       1024    4      0  3600  3600 0xff 0xff
+           flash         65     6   128    0 yes     32768  128    256  4500  4500 0xff 0xff
+           lfuse          0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+           hfuse          0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+           efuse          0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+           lock           0     0     0    0 no          1    0      0  4500  4500 0x00 0x00
+           calibration    0     0     0    0 no          1    0      0     0     0 0x00 0x00
+           signature      0     0     0    0 no          3    0      0     0     0 0x00 0x00
+
+         Programmer Type : Arduino
+         Description     : Arduino
+
+avrdude: stk500_getparm(): (a) protocol error, expect=0x14, resp=0x14
+
+avrdude: stk500_getparm(): (a) protocol error, expect=0x14, resp=0x02
+
+avrdude: stk500_getparm(): (a) protocol error, expect=0x14, resp=0x10
+         Hardware Version: 40756539
+         Firmware Version: 150065296.3
+         Topcard         : STK502
+         Vtarget         : 1.8 V
+         Varef           : 0.0 V
+         Oscillator      : Off
+         SCK period      : 0.1 us
+
+avrdude: stk500_initialize(): (b) protocol error, expect=0x10, resp=0x01
+avrdude: initialization failed, rc=-1
+         Double check connections and try again, or use -F to override
+         this check.
+
+avrdude: stk500_disable(): protocol error, expect=0x14, resp=0x10
+
+avrdude done.  Thank you.
+
+Error while burning bootloader.
+
+
+This report would have more information with
+"Show verbose output during compilation"
+option enabled in File -> Preferences.
